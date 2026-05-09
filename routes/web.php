@@ -3,9 +3,10 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SalidaController;
+use App\Http\Controllers\ReporteBalanceController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login'); // Te enviará directo al login
 });
 
 Route::get('/dashboard', function () {
@@ -33,3 +34,5 @@ Route::get('/salidas/registrar', [SalidaController::class, 'create'])->middlewar
 Route::post('/salidas', [SalidaController::class, 'store'])->middleware(['auth'])->name('salidas.store');
 
 Route::get('/salidas', [SalidaController::class, 'index'])->middleware(['auth'])->name('salidas.index');
+
+Route::get('/balance', [ReporteBalanceController::class, 'index'])->name('balance.index');

@@ -25,9 +25,8 @@
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $entrada->fecha }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $entrada->tipo }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-bold text-green-600">${{ number_format($entrada->monto, 2) }}</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    @if($entrada->factura_ruta)
-                                        <a href="{{ asset('storage/' . $entrada->factura_ruta) }}" target="_blank" class="text-blue-600 hover:underline">
+                           <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    @if($entrada->factura_ruta) <a href="{{ asset('storage/' . $entrada->factura_ruta) }}" target="_blank" class="text-blue-600 hover:underline">
                                             <img src="{{ asset('storage/' . $entrada->factura_ruta) }}" alt="Factura" class="h-12 w-12 object-cover rounded border">
                                         </a>
                                     @else

@@ -21,8 +21,7 @@
                 <input type="date" name="fecha" class="form-input" required>
 
                 <label class="form-label">Factura (Foto)</label>
-                <input type="file" name="factura_ruta" accept="image/*" class="form-input bg-white">
-
+                <input type="file" name="factura" accept="image/*" class="form-input bg-white" required>
                 <button type="submit" class="btn-guardar">
                     Guardar Entrada
                 </button>
