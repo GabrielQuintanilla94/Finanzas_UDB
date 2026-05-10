@@ -56,7 +56,7 @@ Flujo completo de gestión de datos (CRUD) con una experiencia de usuario optimi
 - [Node.js & NPM](https://nodejs.org/)
 - [Git](https://git-scm.com/)
 
-Abre la **Terminal de Laragon** y sigue estos pasos:
+Abre la y sigue estos pasos:
 
 ---
 
