@@ -2,24 +2,41 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Entrada;
+use App\Models\Salida;
 use Illuminate\Http\Request;
-use App\Models\Entrada; // Traemos las entradas
-use App\Models\Salida;  // Traemos las salidas
+use Barryvdh\DomPDF\Facade\Pdf; // Para el paso 3
 
 class ReporteBalanceController extends Controller
 {
     public function index()
     {
-        // 1. Sumamos todo el dinero que ha entrado
-        $totalEntradas = Entrada::sum('monto');
+        // Obtener todos los registros
+        $entradas = Entrada::all();
+        $salidas = Salida::all();
 
-        // 2. Sumamos todo el dinero que ha salido
-        $totalSalidas = Salida::sum('monto');
+        // Calcular los totales usando las colecciones de Laravel
+        $totalEntradas = $entradas->sum('monto');
+        $totalSalidas = $salidas->sum('monto');
+        
+        // Calcular el balance final
+        $balance = $totalEntradas - $totalSalidas;
 
-        // 3. Calculamos el balance real (Entradas - Salidas)
-        $balanceTotal = $totalEntradas - $totalSalidas;
+        return view('balance.index', compact('entradas', 'salidas', 'totalEntradas', 'totalSalidas', 'balance'));
+    }
+  public function exportPdf()
+    {
+        // Traemos los datos
+        $entradas = Entrada::all();
+        $salidas = Salida::all();
+        $totalEntradas = $entradas->sum('monto');
+        $totalSalidas = $salidas->sum('monto');
+        $balance = $totalEntradas - $totalSalidas;
 
-        // 4. Enviamos estos 3 totales a la pantalla final
-        return view('balance.index', compact('totalEntradas', 'totalSalidas', 'balanceTotal'));
+        // ¡AQUÍ ESTÁ LA MAGIA! Agregamos ->setOptions(['isRemoteEnabled' => true])
+        $pdf = Pdf::loadView('balance.pdf', compact('entradas', 'salidas', 'totalEntradas', 'totalSalidas', 'balance'))
+                  ->setOptions(['isRemoteEnabled' => true]);
+        
+        return $pdf->download('Reporte_Mensual.pdf');
     }
 }

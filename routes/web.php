@@ -36,3 +36,7 @@ Route::post('/salidas', [SalidaController::class, 'store'])->middleware(['auth']
 Route::get('/salidas', [SalidaController::class, 'index'])->middleware(['auth'])->name('salidas.index');
 
 Route::get('/balance', [ReporteBalanceController::class, 'index'])->name('balance.index');
+
+// Rutas para el Balance y PDF
+    Route::get('/balance', [ReporteBalanceController::class, 'index'])->name('balance.index');
+    Route::get('/balance/pdf', [ReporteBalanceController::class, 'exportPdf'])->name('balance.pdf');

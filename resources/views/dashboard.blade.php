@@ -24,7 +24,8 @@
                         <a href="{{ route('salidas.index') }}" class="block p-4 border border-gray-200 rounded-lg hover:bg-blue-50 hover:border-blue-300 transition duration-150">
                             <span class="font-bold text-blue-600">4.</span> Ver salidas
                            </a>
-                        <a href="#" class="block p-4 border border-gray-200 rounded-lg md:col-span-2 text-center hover:bg-blue-50 hover:border-blue-300 transition duration-150">
+                        
+                        <a href="{{ route('balance.index') }}" class="block p-4 border border-gray-200 rounded-lg md:col-span-2 text-center hover:bg-blue-50 hover:border-blue-300 transition duration-150">
                             <span class="font-bold text-blue-600">5.</span> Mostrar balance
                         </a>
                     </div>
