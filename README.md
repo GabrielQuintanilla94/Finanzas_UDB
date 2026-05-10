@@ -1,58 +1,126 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 📊 Sistema de Gestión Financiera - UDB
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+![Laravel](https://img.shields.io/badge/Laravel-11-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
+![PHP](https://img.shields.io/badge/PHP-8.2+-777BB4?style=for-the-badge&logo=php&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
+![Alpine.js](https://img.shields.io/badge/Alpine.js-8BC0D0?style=for-the-badge&logo=alpine.js&logoColor=black)
 
-## About Laravel
+Un sistema web moderno y responsivo desarrollado con **Laravel 11** para la gestión, control y balance de finanzas personales o empresariales. Este proyecto fue diseñado como parte del proceso de aprendizaje en la **Universidad Don Bosco**.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 📋 Tabla de Contenidos
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- [✨ Características](#-características-principales)
+- [🛠️ Tecnologías](#️-tecnologías-y-entorno)
+- [🚀 Instalación](#-instrucciones-de-instalación-entorno-laragon)
+- [🤝 Contribuciones](#-contribuciones)
+- [👤 Autor](#-autor)
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## ✨ Características Principales
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Flujo completo de gestión de datos (CRUD) con una experiencia de usuario optimizada:
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+- 🔒 **Seguridad y Autenticación** — Sistema de acceso protegido mediante Laravel Breeze. Incluye Login, Registro y validación de sesiones.
+- 📈 **Gestión de Ingresos** — Formulario moderno para registrar entradas con validación de montos y tipos.
+- 📉 **Gestión de Gastos** — Control detallado de egresos con identificación visual en tonos rojos.
+- 📸 **Comprobantes Digitales** — Subida de fotos de facturas o tickets (JPG, PNG, JPEG) almacenadas de forma segura en el servidor.
+- 💰 **Dashboard de Balance** — Panel principal que calcula automáticamente el saldo real (Ingresos − Gastos) con tarjetas informativas.
+- 📄 **Reportes Exportables** — Generación de archivos PDF con el resumen financiero usando la librería DomPDF.
+- 🎨 **UI/UX Premium** — Interfaz con efectos de *Glassmorphism*, degradados cálidos tipo "Amanecer" y botones animados con iconos de Heroicons.
 
-## Agentic Development
+---
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+## 🛠️ Tecnologías y Entorno
 
-```bash
-composer require laravel/boost --dev
+| Categoría | Tecnología |
+|---|---|
+| **Framework Backend** | Laravel 11 (PHP 8.2+) |
+| **Frontend** | Blade Engine, Tailwind CSS, Alpine.js |
+| **Base de Datos** | MySQL |
+| **Entorno Local** | Laragon (Windows) |
+| **Autenticación** | Laravel Breeze |
+| **Generación de PDF** | DomPDF |
 
-php artisan boost:install
+---
+
+## 🚀 Instrucciones de Instalación (Entorno Laragon)
+
+### Requisitos Previos
+
+- [Laragon](https://laragon.org/) instalado y ejecutándose
+- [Composer](https://getcomposer.org/)
+- [Node.js & NPM](https://nodejs.org/)
+- [Git](https://git-scm.com/)
+
+Abre la **Terminal de Laragon** y sigue estos pasos:
+
+---
+
+### Paso 1 — Clonar el repositorio
+
+```cmd
+git clone https://github.com/tu-usuario/finanzas_udb.git
+cd finanzas_udb
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+### Paso 2 — Instalar dependencias del proyecto
 
-## Contributing
+Instala las librerías de PHP y los paquetes de Node.js:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```cmd
+composer install
+npm install
+```
 
-## Code of Conduct
+### Paso 3 — Configurar el archivo de entorno
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Crea tu archivo de configuración a partir del ejemplo:
 
-## Security Vulnerabilities
+```cmd
+copy .env.example .env
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Abre el archivo `.env` y configura tus credenciales de base de datos:
 
-## License
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=finanzas_udb
+DB_USERNAME=root
+DB_PASSWORD=
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### Paso 4 — Preparar la aplicación
+
+Genera la clave de seguridad y crea el enlace para visualizar las fotos de facturas:
+
+```cmd
+php artisan key:generate
+php artisan storage:link
+```
+
+### Paso 5 — Ejecutar las migraciones
+
+Crea las tablas en la base de datos:
+
+```cmd
+php artisan migrate
+```
+
+### Paso 6 — Ejecutar la aplicación
+
+Gracias a Laravel 11, puedes levantar el servidor y el compilador de diseño (Vite) con un solo comando:
+
+```cmd
+composer run dev
+```
+
+✅ ¡Listo! Abre tu navegador en **[http://localhost:8000](http://localhost:8000)**, crea una cuenta y empieza a usar el sistema.
+
+---
+
