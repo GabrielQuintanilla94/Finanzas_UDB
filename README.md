@@ -120,7 +120,7 @@ Gracias a Laravel 11, puedes levantar el servidor y el compilador de diseño (Vi
 composer run dev
 ```
 
-✅ ¡Listo! Abre tu navegador en **[http://localhost:8000](http://localhost:8000)**, crea una cuenta y empieza a usar el sistema.
+✅ ¡Listo! Abre tu navegador en **[http://127.0.0.1:8000](http://127.0.0.1:8000)**, crea una cuenta y empieza a usar el sistema.
 
 ---
 
