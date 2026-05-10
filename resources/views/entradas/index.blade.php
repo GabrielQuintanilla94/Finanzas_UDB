@@ -17,6 +17,8 @@
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tipo</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Monto</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Factura</th>
+                                
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Acciones</th>
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
@@ -25,14 +27,26 @@
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $entrada->fecha }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $entrada->tipo }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-bold text-green-600">${{ number_format($entrada->monto, 2) }}</td>
-                           <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    @if($entrada->factura_ruta) <a href="{{ asset('storage/' . $entrada->factura_ruta) }}" target="_blank" class="text-blue-600 hover:underline">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    @if($entrada->factura_ruta) 
+                                        <a href="{{ asset('storage/' . $entrada->factura_ruta) }}" target="_blank" class="text-blue-600 hover:underline">
                                             <img src="{{ asset('storage/' . $entrada->factura_ruta) }}" alt="Factura" class="h-12 w-12 object-cover rounded border">
                                         </a>
                                     @else
                                         <span class="text-gray-400 italic">Sin foto</span>
                                     @endif
                                 </td>
+                                
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                    <form action="{{ route('entradas.destroy', $entrada) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas borrar esta entrada?');">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="text-red-600 hover:text-red-900 font-bold transition-colors">
+                                            Eliminar
+                                        </button>
+                                    </form>
+                                </td>
+                                
                             </tr>
                             @endforeach
                         </tbody>

@@ -6,6 +6,7 @@ use App\Models\Entrada;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
+
 class EntradaController extends Controller
 {
     // 1. Ver la lista de entradas
@@ -44,5 +45,19 @@ class EntradaController extends Controller
         ]);
 
         return redirect()->route('entradas.index')->with('success', 'Entrada registrada con éxito.');
+    }
+    // Función para borrar una entrada
+    public function destroy(Entrada $entrada)
+    {
+        // 1. Verificamos si tiene foto y la borramos del disco duro
+        if ($entrada->factura_ruta) {
+            Storage::disk('public')->delete($entrada->factura_ruta);
+        }
+
+        // 2. Borramos el registro de la base de datos
+        $entrada->delete();
+
+        // 3. Recargamos la página
+        return redirect()->route('entradas.index');
     }
 }

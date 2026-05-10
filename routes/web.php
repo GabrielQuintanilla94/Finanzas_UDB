@@ -37,6 +37,10 @@ Route::get('/salidas', [SalidaController::class, 'index'])->middleware(['auth'])
 
 Route::get('/balance', [ReporteBalanceController::class, 'index'])->name('balance.index');
 
+Route::delete('/entradas/{entrada}', [EntradaController::class, 'destroy'])->name('entradas.destroy');
+
+Route::delete('/salidas/{salida}', [SalidaController::class, 'destroy'])->name('salidas.destroy');
+
 // Rutas para el Balance y PDF
     Route::get('/balance', [ReporteBalanceController::class, 'index'])->name('balance.index');
     Route::get('/balance/pdf', [ReporteBalanceController::class, 'exportPdf'])->name('balance.pdf');
