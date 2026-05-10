@@ -1,126 +1,137 @@
-# 📊 Sistema de Gestión Financiera - UDB
+# 💸 MisGastosApp
 
-![Laravel](https://img.shields.io/badge/Laravel-11-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
-![PHP](https://img.shields.io/badge/PHP-8.2+-777BB4?style=for-the-badge&logo=php&logoColor=white)
-![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
-![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
-![Alpine.js](https://img.shields.io/badge/Alpine.js-8BC0D0?style=for-the-badge&logo=alpine.js&logoColor=black)
+![React Native](https://img.shields.io/badge/React_Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Expo](https://img.shields.io/badge/Expo-000020?style=for-the-badge&logo=expo&logoColor=white)
+![Firebase](https://img.shields.io/badge/firebase-ffca28?style=for-the-badge&logo=firebase&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
 
-Un sistema web moderno y responsivo desarrollado con **Laravel 11** para la gestión, control y balance de finanzas personales o empresariales. Este proyecto fue diseñado como parte del proceso de aprendizaje en la **Universidad Don Bosco**.
+Una aplicación móvil robusta para la **gestión de finanzas personales**. Diseñada con una arquitectura híbrida utilizando **React Native con Expo**, **TypeScript** para tipado estricto en componentes y **Firebase** como Backend-as-a-Service (BaaS).
 
 ---
 
 ## 📋 Tabla de Contenidos
 
 - [✨ Características](#-características-principales)
-- [🛠️ Tecnologías](#️-tecnologías-y-entorno)
-- [🚀 Instalación](#-instrucciones-de-instalación-entorno-laragon)
-- [🤝 Contribuciones](#-contribuciones)
-- [👤 Autor](#-autor)
+- [🏗️ Arquitectura](#️-arquitectura-y-estructura-del-código)
+- [🛠️ Stack Tecnológico](#️-stack-tecnológico)
+- [🚀 Instalación](#-guía-de-instalación-y-despliegue)
+- [🎬 Demo en Video](#-demo-en-video)
+- [📄 Documentación](#-documentación)
 
 ---
 
 ## ✨ Características Principales
 
-Flujo completo de gestión de datos (CRUD) con una experiencia de usuario optimizada:
-
-- 🔒 **Seguridad y Autenticación** — Sistema de acceso protegido mediante Laravel Breeze. Incluye Login, Registro y validación de sesiones.
-- 📈 **Gestión de Ingresos** — Formulario moderno para registrar entradas con validación de montos y tipos.
-- 📉 **Gestión de Gastos** — Control detallado de egresos con identificación visual en tonos rojos.
-- 📸 **Comprobantes Digitales** — Subida de fotos de facturas o tickets (JPG, PNG, JPEG) almacenadas de forma segura en el servidor.
-- 💰 **Dashboard de Balance** — Panel principal que calcula automáticamente el saldo real (Ingresos − Gastos) con tarjetas informativas.
-- 📄 **Reportes Exportables** — Generación de archivos PDF con el resumen financiero usando la librería DomPDF.
-- 🎨 **UI/UX Premium** — Interfaz con efectos de *Glassmorphism*, degradados cálidos tipo "Amanecer" y botones animados con iconos de Heroicons.
+- 🔐 **Autenticación Bimodal** — Registro/ingreso por correo electrónico y autenticación federada con Google (`@react-native-google-signin/google-signin`).
+- ⚡ **Base de Datos Reactiva (Firestore)** — Operaciones CRUD en tiempo real. La interfaz se actualiza instantáneamente mediante suscripciones `onSnapshot` sin necesidad de recargar la vista.
+- 🔎 **Filtrado Avanzado en Memoria** — Lógica combinada para filtrar el historial de transacciones por categoría personalizada y selección de mes.
+- 📅 **Selector de Fechas Nativo** — Uso de `@react-native-community/datetimepicker` para garantizar una experiencia nativa tanto en iOS como en Android.
+- 💰 **Cálculo Dinámico** — Algoritmo de reducción en JavaScript que actualiza el balance total basado en los filtros activos (Categoría + Mes).
 
 ---
 
-## 🛠️ Tecnologías y Entorno
+## 🏗️ Arquitectura y Estructura del Código
+
+El proyecto utiliza una estructura basada en **componentes modulares** y el sistema de enrutamiento basado en archivos de Expo (`app/`).
+
+```
+MisGastosApp/
+│
+├── app/                          # Expo Router: Punto de entrada de la aplicación
+├── components/                   # Componentes UI reutilizables tipados con TypeScript (.tsx)
+│   ├── parallax-scroll-view.tsx
+│   ├── themed-text.tsx           # Componente de texto adaptable al modo oscuro/claro
+│   └── ui/                       # Subcomponentes atómicos (IconSymbols, Collapsibles)
+│
+├── hooks/                        # Custom Hooks de React
+│   ├── use-color-scheme.ts       # Detección del esquema de color del sistema (Light/Dark)
+│   └── use-theme-color.ts
+│
+├── constants/                    # Variables de configuración global
+│   └── theme.ts                  # Paletas de color centralizadas
+│
+├── ExpensesScreen.js             # Vista principal: CRUD, filtros y renderizado del historial
+├── LoginScreen.js                # Vista de acceso: Formularios y lógica de Firebase Auth
+├── firebaseConfig.js             # Inicialización del SDK de Firebase
+│
+├── google-services.json          # Credenciales de Google Cloud para Android
+├── tsconfig.json                 # Configuración estricta de TypeScript
+├── eslint.config.js              # Reglas de linting
+└── package.json                  # Dependencias y scripts de Expo
+```
+
+---
+
+## 🛠️ Stack Tecnológico
 
 | Categoría | Tecnología |
 |---|---|
-| **Framework Backend** | Laravel 11 (PHP 8.2+) |
-| **Frontend** | Blade Engine, Tailwind CSS, Alpine.js |
-| **Base de Datos** | MySQL |
-| **Entorno Local** | Laragon (Windows) |
-| **Autenticación** | Laravel Breeze |
-| **Generación de PDF** | DomPDF |
+| **Core** | React Native, Expo SDK |
+| **Lenguajes** | JavaScript (ES6+), TypeScript |
+| **Autenticación** | Firebase Authentication, Google Sign-In |
+| **Base de Datos** | Firebase Cloud Firestore |
+| **Herramientas** | ESLint, Metro Bundler |
 
 ---
 
-## 🚀 Instrucciones de Instalación (Entorno Laragon)
+## 🚀 Guía de Instalación y Despliegue
 
 ### Requisitos Previos
 
-- [Laragon](https://laragon.org/) instalado y ejecutándose
-- [Composer](https://getcomposer.org/)
-- [Node.js & NPM](https://nodejs.org/)
-- [Git](https://git-scm.com/)
+- [Node.js](https://nodejs.org/) instalado
+- Cuenta configurada en [Firebase Console](https://console.firebase.google.com/)
+- Dispositivo físico con la app **Expo Go** o un emulador (Android Studio / Xcode)
 
-Abre la y sigue estos pasos:
+### Pasos para Ejecución Local
 
----
-
-### Paso 1 — Clonar el repositorio
-
-```cmd
-git clone https://github.com/tu-usuario/finanzas_udb.git
-cd finanzas_udb
+**1. Clonar el repositorio**
+```bash
+git clone https://github.com/Jonixmax/MisGastosApp.git
+cd MisGastosApp
 ```
 
-### Paso 2 — Instalar dependencias del proyecto
-
-Instala las librerías de PHP y los paquetes de Node.js:
-
-```cmd
-composer install
+**2. Instalar dependencias**
+```bash
 npm install
 ```
 
-### Paso 3 — Configurar el archivo de entorno
+**3. Configurar el entorno (Firebase)**
 
-Crea tu archivo de configuración a partir del ejemplo:
+> ⚠️ Sustituye el contenido de `firebaseConfig.js` con las variables de entorno de tu propio proyecto web de Firebase.
+> Si vas a compilar el APK/AAB para Android, coloca tu propio archivo `google-services.json` en la raíz del proyecto.
 
-```cmd
-copy .env.example .env
+**4. Levantar el entorno de desarrollo**
+```bash
+npx expo start --clear
 ```
-
-Abre el archivo `.env` y configura tus credenciales de base de datos:
-
-```env
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=finanzas_udb
-DB_USERNAME=root
-DB_PASSWORD=
-```
-
-### Paso 4 — Preparar la aplicación
-
-Genera la clave de seguridad y crea el enlace para visualizar las fotos de facturas:
-
-```cmd
-php artisan key:generate
-php artisan storage:link
-```
-
-### Paso 5 — Ejecutar las migraciones
-
-Crea las tablas en la base de datos:
-
-```cmd
-php artisan migrate
-```
-
-### Paso 6 — Ejecutar la aplicación
-
-Gracias a Laravel 11, puedes levantar el servidor y el compilador de diseño (Vite) con un solo comando:
-
-```cmd
-composer run dev
-```
-
-✅ ¡Listo! Abre tu navegador en **[http://127.0.0.1:8000](http://127.0.0.1:8000)**, crea una cuenta y empieza a usar el sistema.
+> 💡 Usa la bandera `--clear` en la primera ejecución para limpiar la caché de Metro Bundler.
 
 ---
 
+## 🎬 Demo en Video
+
+Haz clic en la miniatura para ver la demo completa de la aplicación:
+
+[![Ver Demo en YouTube](https://img.youtube.com/vi/dNHF8cfnV-0/0.jpg)](https://youtu.be/dNHF8cfnV-0)
+
+---
+
+## 📄 Documentación
+
+El documento oficial del proyecto está disponible en el repositorio:
+
+📎 [Ver Documentación — DPS_MiGastosAPP.docx.pdf](./DPS_MiGastosAPP.docx.pdf)
+
+---
+
+## 👤 Autor
+**Jonathan Alexander Alberto, AC200739**
+**Christian Geovanni Centeno, CS241743**    
+**José Alexander Montoya, MQ252529** 
+**Gabriel Quintanilla Rodríguez, QR230082**
+
+---
+
+## 📄 Licencia
+
+Este proyecto está bajo la licencia **MIT**. Consulta el archivo `LICENSE` para más detalles.
