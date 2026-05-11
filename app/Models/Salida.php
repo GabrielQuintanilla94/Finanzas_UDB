@@ -10,6 +10,7 @@ class Salida extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
         'tipo', 
         'monto', 
         'fecha', 

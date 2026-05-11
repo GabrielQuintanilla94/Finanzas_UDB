@@ -13,6 +13,7 @@ return new class extends Migration
 {
     Schema::create('entradas', function (Blueprint $table) {
         $table->id();
+        $table->foreignId('user_id')->constrained()->cascadeOnDelete();
         $table->string('tipo'); // Honorarios, Ventas, etc.
         $table->decimal('monto', 10, 2);
         $table->date('fecha');

@@ -12,7 +12,8 @@ class EntradaController extends Controller
     // 1. Ver la lista de entradas
     public function index()
     {
-        $entradas = Entrada::all();
+        // Solo trae las entradas del usuario logueado
+        $entradas = Entrada::where('user_id', auth()->id())->get();
         return view('entradas.index', compact('entradas'));
     }
 
@@ -25,7 +26,7 @@ class EntradaController extends Controller
     // 3. Guardar los datos del formulario (Aquí está la magia)
     public function store(Request $request)
     {
-        // Validamos que los datos sean correctos según el PDF
+        // Validamos que los datos sean correctos
         $request->validate([
             'tipo' => 'required|string',
             'monto' => 'required|numeric',
@@ -38,14 +39,16 @@ class EntradaController extends Controller
 
         // Creamos el registro en la base de datos
         Entrada::create([
+            'user_id' => auth()->id(), // <--- ¡AQUÍ ESTÁ LA PIEZA FALTANTE! Le asignamos el dueño
             'tipo' => $request->tipo,
             'monto' => $request->monto,
             'fecha' => $request->fecha,
-           'factura_ruta' => $rutaFoto,
+            'factura_ruta' => $rutaFoto,
         ]);
 
         return redirect()->route('entradas.index')->with('success', 'Entrada registrada con éxito.');
     }
+    
     // Función para borrar una entrada
     public function destroy(Entrada $entrada)
     {

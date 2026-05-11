@@ -15,7 +15,7 @@ class SalidaController extends Controller
 
     public function store(Request $request)
     {
-   // 1. Validamos (Cambiamos 'mca' por 'mimes' igual que en entradas)
+        // 1. Validamos 
         $request->validate([
             'tipo' => 'required|string',
             'monto' => 'required|numeric',
@@ -26,20 +26,26 @@ class SalidaController extends Controller
         // Guardamos la imagen en storage
         $rutaFoto = $request->file('factura')->store('facturas', 'public');
 
-        // 2. Creamos el registro (Usamos 'factura_ruta' para la base de datos)
+        // 2. Creamos el registro agregando el dueño (user_id)
         Salida::create([
+            'user_id' => auth()->id(), // <--- AQUÍ LE ASIGNAMOS EL DUEÑO
             'tipo' => $request->tipo,
             'monto' => $request->monto,
             'fecha' => $request->fecha,
             'factura_ruta' => $rutaFoto, 
         ]);
 
-        return redirect()->route('dashboard');
+       return redirect()->route('salidas.index')->with('success', 'Salida registrada con éxito.');
     }
 
     public function index()
     {
-        $salidas = Salida::orderBy('created_at', 'desc')->get();
+        // Filtramos para que solo traiga las salidas del usuario logueado
+        // (Dejé el orderBy para que sigan saliendo ordenadas por fecha)
+        $salidas = Salida::where('user_id', auth()->id())
+                         ->orderBy('created_at', 'desc')
+                         ->get();
+                         
         return view('salidas.index', compact('salidas'));
     }
 

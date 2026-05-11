@@ -5,17 +5,17 @@ namespace App\Http\Controllers;
 use App\Models\Entrada;
 use App\Models\Salida;
 use Illuminate\Http\Request;
-use Barryvdh\DomPDF\Facade\Pdf; // Para el paso 3
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class ReporteBalanceController extends Controller
 {
     public function index()
     {
-        // Obtener todos los registros
-        $entradas = Entrada::all();
-        $salidas = Salida::all();
+        // 1. Filtrar solo los registros del usuario logueado
+        $entradas = Entrada::where('user_id', auth()->id())->get();
+        $salidas = Salida::where('user_id', auth()->id())->get();
 
-        // Calcular los totales usando las colecciones de Laravel
+        // Calcular los totales
         $totalEntradas = $entradas->sum('monto');
         $totalSalidas = $salidas->sum('monto');
         
@@ -24,16 +24,17 @@ class ReporteBalanceController extends Controller
 
         return view('balance.index', compact('entradas', 'salidas', 'totalEntradas', 'totalSalidas', 'balance'));
     }
-  public function exportPdf()
+
+    public function exportPdf()
     {
-        // Traemos los datos
-        $entradas = Entrada::all();
-        $salidas = Salida::all();
+        // 2. Filtrar también para el PDF
+        $entradas = Entrada::where('user_id', auth()->id())->get();
+        $salidas = Salida::where('user_id', auth()->id())->get();
+        
         $totalEntradas = $entradas->sum('monto');
         $totalSalidas = $salidas->sum('monto');
         $balance = $totalEntradas - $totalSalidas;
 
-        // ¡AQUÍ ESTÁ LA MAGIA! Agregamos ->setOptions(['isRemoteEnabled' => true])
         $pdf = Pdf::loadView('balance.pdf', compact('entradas', 'salidas', 'totalEntradas', 'totalSalidas', 'balance'))
                   ->setOptions(['isRemoteEnabled' => true]);
         
