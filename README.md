@@ -124,3 +124,12 @@ composer run dev
 
 ---
 
+## 👤 Autor
+
+- 👤 **Jonathan Alexander Alberto** — AC200739
+- 👤 **Christian Geovanni Centeno** — CS241743
+- 👤 **José Alexander Montoya** — MQ252529
+- 👤 **Gabriel Quintanilla Rodríguez** — QR230082
+
+---
+
