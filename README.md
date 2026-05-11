@@ -84,17 +84,6 @@ Crea tu archivo de configuración a partir del ejemplo:
 copy .env.example .env
 ```
 
-Abre el archivo `.env` y configura tus credenciales de base de datos:
-
-```env
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=finanzas_udb
-DB_USERNAME=root
-DB_PASSWORD=
-```
-
 ### Paso 4 — Preparar la aplicación
 
 Genera la clave de seguridad y crea el enlace para visualizar las fotos de facturas:
